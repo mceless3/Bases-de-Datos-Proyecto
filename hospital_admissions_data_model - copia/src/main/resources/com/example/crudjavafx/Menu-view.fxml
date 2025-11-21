@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="750.0" spacing="5.0" styleClass="menu-vbox" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crudjavafx.MenuController">
+    <stylesheets>
+        <URL value="@styles.css" />
+    </stylesheets>
+    <children>
+        <Pane prefHeight="150.0" prefWidth="710.0">
+            <children>
+
+                <Label layoutX="10.0" layoutY="5.0" prefHeight="327.0" prefWidth="301.0" text="MENÚ PRINCIPAL">
+                    <font>
+                        <Font name="Century Gothic Bold Italic" size="30.0" />
+                    </font>
+                    <textFill>
+                        <LinearGradient endX="0.5488958870198825" endY="1.0" startX="0.20504729905715124" startY="0.2429021841344021">
+                            <stops>
+                                <Stop>
+                                    <color>
+                                        <Color red="0.2561728358268738" green="0.9504114985466003" blue="1.0" />
+                                    </color>
+                                </Stop>
+                                <Stop offset="0.006711409395973154">
+                                    <color>
+                                        <Color red="0.2561728358268738" green="0.9504114985466003" blue="1.0" />
+                                    </color>
+                                </Stop>
+                                <Stop offset="1.0">
+                                    <color>
+                                        <Color red="0.8734567761421204" green="0.9915637969970703" blue="1.0" />
+                                    </color>
+                                </Stop>
+                            </stops>
+                        </LinearGradient>
+                    </textFill>
+                    <padding>
+                        <Insets bottom="0.0" left="30.0" right="30.0" top="10.0" />
+                    </padding>
+                </Label>
+            </children>
+        </Pane>
+
+        <GridPane alignment="CENTER" hgap="20.0" prefHeight="292.0" prefWidth="710.0" vgap="15.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" percentWidth="50.0" />
+                <ColumnConstraints hgrow="SOMETIMES" percentWidth="50.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="50.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="50.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="50.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="50.0" prefHeight="60.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+
+            <Button fx:id="btnPacientes" mnemonicParsing="false" onAction="#abrirCRUD" prefHeight="40.0" prefWidth="300.0" styleClass="menu-button, menu-button-blue" text="1. Pacientes" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+
+            <Button fx:id="btnPersonal" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#abrirCRUD" prefHeight="40.0" prefWidth="300.0" styleClass="menu-button, menu-button-green" text="2. Personal (Staff)" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+            <Button fx:id="btnDirecciones" mnemonicParsing="false" onAction="#abrirCRUD" prefHeight="40.0" prefWidth="300.0" styleClass="menu-button, menu-button-orange" text="3. Direcciones" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+
+            <Button fx:id="btnFacturas" mnemonicParsing="false" onAction="#abrirCRUD" prefHeight="40.0" prefWidth="300.0" styleClass="menu-button, menu-button-red" text="4. Facturas (Bills)" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+            <Button fx:id="btnItemsFactura" mnemonicParsing="false" onAction="#abrirCRUD" prefHeight="40.0" prefWidth="300.0" styleClass="menu-button, menu-button-purple" text="5. Ítems de Factura" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+
+            <Button fx:id="btnEstancias" mnemonicParsing="false" onAction="#abrirCRUD" prefHeight="40.0" prefWidth="300.0" styleClass="menu-button, menu-button-cyan" text="6. Estancias (Rooms)" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+            <Button fx:id="btnComponentes" mnemonicParsing="false" onAction="#abrirCRUD" prefHeight="40.0" prefWidth="300.0" styleClass="menu-button, menu-button-yellow" text="7. Catálogo Componentes" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+
+            <Button fx:id="btnRelacionesDir" mnemonicParsing="false" onAction="#abrirCRUD" prefHeight="40.0" prefWidth="300.0" styleClass="menu-button, menu-button-dark" text="8. Historial de Direcciones" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+            <padding>
+                <Insets bottom="10.0" left="60.0" right="60.0" top="50.0" />
+            </padding>
+        </GridPane>
+
+        <Label text="*El menú principal se ocultará al abrir un módulo y regresará al cerrarlo." textFill="WHITE">
+            <font>
+                <Font name="Century Gothic Italic" size="12.0" />
+            </font>
+            <padding>
+                <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+            </padding>
+        </Label>
+    </children>
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+</VBox>
