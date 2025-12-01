@@ -13,7 +13,6 @@ import java.util.ArrayList;
 
 public class CRUDPersonalController {
 
-    @FXML private TextField idText;
     @FXML private TextField nombreText;
     @FXML private TextField apellidoText;
     @FXML private TextField puestoText;
@@ -59,7 +58,11 @@ public class CRUDPersonalController {
         tablaPersonal.setItems(listaObservable);
 
         tablaPersonal.getSelectionModel().selectedItemProperty().addListener((obs, oldSel, newSel)->{
-            if (newSel != null) { cargarSeleccionado(newSel); }
+            if (newSel != null) {
+                cargarSeleccionado(newSel);
+            } else {
+                limpiarForm();
+            }
         });
 
         limpiarForm();
@@ -88,28 +91,38 @@ public class CRUDPersonalController {
             mostrarAlerta("Todos los campos marcados son obligatorios.", "Error", Alert.AlertType.ERROR); return;
         }
 
-        int idGuardar = Integer.parseInt(idText.getText());
+        Personal seleccionado = tablaPersonal.getSelectionModel().getSelectedItem();
+        int idGuardar = (seleccionado != null) ? seleccionado.getId() : 0;
+
         Personal personal = new Personal(idGuardar, nombre, apellido, puesto, categoria, genero, fechaNac, activo);
 
-        int resultado = (idGuardar == 0) ? manejadorPersonalDB.insertarPS(personal) : manejadorPersonalDB.actualizarPS(personal);
+        int resultado;
 
-        if (resultado > 0) {
-            mostrarAlerta((idGuardar == 0) ? "Personal agregado correctamente." : "Personal actualizado correctamente.", "Correcto", Alert.AlertType.INFORMATION);
+        if (idGuardar != 0) {
+            resultado = manejadorPersonalDB.actualizarPS(personal);
+            mostrarAlerta((resultado > 0) ? "Personal actualizado correctamente." : "No se pudo actualizar.", "Correcto", Alert.AlertType.INFORMATION);
         } else {
-            mostrarAlerta("No se pudo guardar el personal.", "Error", Alert.AlertType.ERROR);
+            resultado = manejadorPersonalDB.insertarPS(personal);
+            mostrarAlerta((resultado > 0) ? "Personal agregado correctamente. ID: " + resultado : "No se pudo agregar.", "Correcto", Alert.AlertType.INFORMATION);
         }
+
         recargarDatos();
     }
 
     @FXML
     private void eliminarPersonal() {
-        int idEliminar;
-        try { idEliminar = Integer.parseInt(idText.getText()); }
-        catch (NumberFormatException e) { mostrarAlerta("Seleccione un ID válido para eliminar", "Aviso", Alert.AlertType.WARNING); return; }
+        Personal seleccionado = tablaPersonal.getSelectionModel().getSelectedItem();
+
+        if (seleccionado == null) {
+            mostrarAlerta("Seleccione un personal de la tabla para eliminar", "Aviso", Alert.AlertType.WARNING);
+            return;
+        }
+
+        int idEliminar = seleccionado.getId();
 
         if (idEliminar > 0) {
             manejadorPersonalDB.eliminarPS(idEliminar);
-            mostrarAlerta("Personal eliminado.", "Correcto", Alert.AlertType.INFORMATION);
+            mostrarAlerta("Personal eliminado (ID: " + idEliminar + ")", "Correcto", Alert.AlertType.INFORMATION);
             recargarDatos();
         }
     }
@@ -142,7 +155,6 @@ public class CRUDPersonalController {
     }
 
     private void cargarSeleccionado(Personal personal) {
-        idText.setText(String.valueOf(personal.getId()));
         nombreText.setText(personal.getNombre());
         apellidoText.setText(personal.getApellido());
         puestoText.setText(personal.getPuesto());
@@ -160,7 +172,6 @@ public class CRUDPersonalController {
 
     @FXML
     private void limpiarForm() {
-        idText.setText(String.valueOf(0));
         nombreText.clear();
         apellidoText.clear();
         puestoText.clear();
@@ -172,18 +183,9 @@ public class CRUDPersonalController {
         tablaPersonal.getSelectionModel().clearSelection();
     }
 
-    @FXML
-    private void probarConexión() {
-        Connection conn = manejadorPersonalDB.abrirConexion();
-        if (conn != null) {
-            mostrarAlerta("Conexión exitosa!!", "Éxito", Alert.AlertType.INFORMATION);
-            manejadorPersonalDB.cerrarConexion(conn);
-        } else { mostrarAlerta("No se pudo conectar.", "Error", Alert.AlertType.ERROR); }
-    }
-
     private void mostrarAlerta(String mensaje, String titulo, Alert.AlertType tipo) {
         Alert alerta = new Alert(tipo);
-        alerta.setTitle("Aviso");
+        alerta.setTitle(titulo);
         alerta.setHeaderText(null);
         alerta.setContentText(mensaje);
         Stage stage = (Stage) tablaPersonal.getScene().getWindow();

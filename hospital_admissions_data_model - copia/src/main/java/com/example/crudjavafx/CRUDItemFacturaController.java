@@ -7,8 +7,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 
-import java.sql.Connection;
-
 public class CRUDItemFacturaController {
 
     @FXML private TextField idFacturaText;
@@ -24,11 +22,14 @@ public class CRUDItemFacturaController {
     @FXML private TableColumn<ItemFactura, Integer> columnaCantidad;
     @FXML private TableColumn<ItemFactura, Double> columnaCostoTotal;
 
+    // CORRECCIÓN AQUÍ: Usamos ManejadorItemFacturaDB, NO ManejadorFacturaDB
     private ManejadorItemFacturaDB manejadorItemFacturaDB;
     private ObservableList<ItemFactura> listaObservable;
 
     public void initData(String url, String user, String password) {
+        // CORRECCIÓN AQUÍ: Instanciamos el manejador de Ítems correcto
         manejadorItemFacturaDB = new ManejadorItemFacturaDB(url, user, password);
+
         listaObservable = FXCollections.observableArrayList(manejadorItemFacturaDB.getItemsFacturaPS());
         tablaItems.setItems(listaObservable);
 
@@ -69,6 +70,7 @@ public class CRUDItemFacturaController {
         ItemFactura item = new ItemFactura(idFactura, numSecuencia, codigoItem, cantidad, costoTotal);
         int resultado;
 
+        // Métodos originales del manejador de items
         resultado = manejadorItemFacturaDB.actualizarPS(item);
 
         if (resultado > 0) {
@@ -125,7 +127,10 @@ public class CRUDItemFacturaController {
 
     @FXML
     private void recargarDatos() {
-        listaObservable.setAll(manejadorItemFacturaDB.getItemsFacturaPS());
+        if (manejadorItemFacturaDB != null) {
+            listaObservable.setAll(manejadorItemFacturaDB.getItemsFacturaPS());
+            tablaItems.setItems(listaObservable);
+        }
         limpiarForm();
     }
 
@@ -139,15 +144,6 @@ public class CRUDItemFacturaController {
         cantidadText.clear();
         costoTotalText.clear();
         tablaItems.getSelectionModel().clearSelection();
-    }
-
-    @FXML
-    private void probarConexión() {
-        Connection conn = manejadorItemFacturaDB.abrirConexion();
-        if (conn != null) {
-            mostrarAlerta("Conexión exitosa!!", "Éxito", Alert.AlertType.INFORMATION);
-            manejadorItemFacturaDB.cerrarConexion(conn);
-        } else { mostrarAlerta("No se pudo conectar.", "Error", Alert.AlertType.ERROR); }
     }
 
     private void mostrarAlerta(String mensaje, String titulo, Alert.AlertType tipo) {

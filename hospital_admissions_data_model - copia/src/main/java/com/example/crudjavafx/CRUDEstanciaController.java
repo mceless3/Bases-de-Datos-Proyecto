@@ -144,15 +144,6 @@ public class CRUDEstanciaController {
         tablaEstancias.getSelectionModel().clearSelection();
     }
 
-    @FXML
-    private void probarConexión() {
-        Connection conn = manejadorEstanciaDB.abrirConexion();
-        if (conn != null) {
-            mostrarAlerta("Conexión exitosa!!", "Éxito", Alert.AlertType.INFORMATION);
-            manejadorEstanciaDB.cerrarConexion(conn);
-        } else { mostrarAlerta("No se pudo conectar.", "Error", Alert.AlertType.ERROR); }
-    }
-
     private void mostrarAlerta(String mensaje, String titulo, Alert.AlertType tipo) {
         Alert alerta = new Alert(tipo);
         alerta.setTitle("Aviso");

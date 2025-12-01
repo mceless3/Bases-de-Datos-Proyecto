@@ -18,9 +18,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" spacing="10.0" styleClass="module-background" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crudjavafx.CRUDPacientesController"> <stylesheets>
-    <URL value="@styles.css" />
-</stylesheets>
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" spacing="10.0" styleClass="module-background" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crudjavafx.CRUDPacientesController">
+    <stylesheets>
+        <URL value="@styles.css" />
+    </stylesheets>
     <children>
         <Label prefHeight="73.0" prefWidth="416.0" text="Lista de Pacientes" textFill="WHITE">
             <font>
@@ -37,67 +38,49 @@
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="263.79997558593755" minWidth="10.0" prefWidth="238.00000000000006" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            </rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" /> <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" /> <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" /> <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" /> <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" /> <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" /> </rowConstraints>
             <children>
-                <Label text="ID" GridPane.columnIndex="1">
+                <Label text="Nombre" GridPane.columnIndex="1" GridPane.rowIndex="0">
                     <font>
                         <Font name="Century Gothic Bold" size="18.0" />
                     </font>
                 </Label>
-                <TextField fx:id="idText" disable="true" prefWidth="336.0" GridPane.columnIndex="2">
-                    <GridPane.margin>
-                        <Insets />
-                    </GridPane.margin>
-                </TextField>
+                <TextField fx:id="nombreText" GridPane.columnIndex="2" GridPane.rowIndex="0" />
 
-                <Label text="Nombre" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <Label text="Apellido" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <font>
                         <Font name="Century Gothic Bold" size="18.0" />
                     </font>
                 </Label>
-                <TextField fx:id="nombreText" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <TextField fx:id="apellidoText" GridPane.columnIndex="2" GridPane.rowIndex="1" />
 
-                <Label text="Apellido" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <Label text="Núm. Hospital" GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <font>
                         <Font name="Century Gothic Bold" size="18.0" />
                     </font>
                 </Label>
-                <TextField fx:id="apellidoText" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                <TextField fx:id="hospitalNumberText" GridPane.columnIndex="2" GridPane.rowIndex="2" />
 
-                <Label text="Núm. Hospital" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                <Label text="Peso (kg)" GridPane.columnIndex="1" GridPane.rowIndex="3">
                     <font>
                         <Font name="Century Gothic Bold" size="18.0" />
                     </font>
                 </Label>
-                <TextField fx:id="hospitalNumberText" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                <TextField fx:id="weightText" GridPane.columnIndex="2" GridPane.rowIndex="3" />
 
-                <Label text="Peso (kg)" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                <Label text="Fec. Nacimiento" GridPane.columnIndex="1" GridPane.rowIndex="4">
                     <font>
                         <Font name="Century Gothic Bold" size="18.0" />
                     </font>
                 </Label>
-                <TextField fx:id="weightText" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                <DatePicker fx:id="fechaNacimientoPicker" prefHeight="26.0" prefWidth="262.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
 
-                <Label text="Fec. Nacimiento" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                <Label text="Género" GridPane.columnIndex="1" GridPane.rowIndex="5">
                     <font>
                         <Font name="Century Gothic Bold" size="18.0" />
                     </font>
                 </Label>
-                <DatePicker fx:id="fechaNacimientoPicker" prefHeight="26.0" prefWidth="262.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-
-                <Label text="Género" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                    <font>
-                        <Font name="Century Gothic Bold" size="18.0" />
-                    </font>
-                </Label>
-                <ComboBox fx:id="generoComboBox" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                <ComboBox fx:id="generoComboBox" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
 
             </children>
             <VBox.margin>
@@ -114,17 +97,17 @@
                         <Font name="Century Gothic Bold" size="13.0" />
                     </font>
                 </Button>
-                <Button mnemonicParsing="false" onAction="#filtrarPacientes" style="-fx-base: DF7DFF;" text="Filtrar">
+                <Button mnemonicParsing="false" onAction="#filtrarPacientes" style="-fx-base: #DF7DFF;" text="Filtrar">
                     <font>
                         <Font name="Century Gothic Bold" size="13.0" />
                     </font>
                 </Button>
-                <Button mnemonicParsing="false" onAction="#eliminarPaciente" style="-fx-base: ff5fb5;" text="Eliminar">
+                <Button mnemonicParsing="false" onAction="#eliminarPaciente" style="-fx-base: #ff5fb5;" text="Eliminar">
                     <font>
                         <Font name="Century Gothic Bold" size="13.0" />
                     </font>
                 </Button>
-                <Button mnemonicParsing="false" onAction="#recargarDatos" style="-fx-base: yellow;" text="Limpiar">
+                <Button mnemonicParsing="false" onAction="#recargarDatos" style="-fx-base: #FFFF00;" text="Limpiar">
                     <font>
                         <Font name="Century Gothic Bold" size="13.0" />
                     </font>
@@ -155,18 +138,7 @@
                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </padding>
         </BorderPane>
-        <ButtonBar prefHeight="40.0" prefWidth="200.0">
-            <buttons>
-                <Button mnemonicParsing="false" onAction="#probarConexión" prefHeight="27.0" prefWidth="133.0" style="-fx-base: #FFC257;" text="Probar Conexión">
-                    <font>
-                        <Font name="Century Gothic Bold" size="13.0" />
-                    </font>
-                    <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                    </padding>
-                </Button>
-            </buttons>
-        </ButtonBar>
+        <ButtonBar prefHeight="40.0" prefWidth="200.0" />
     </children>
     <padding>
         <Insets top="20.0" />

@@ -127,6 +127,7 @@ public class CRUDMetodoPagoController {
         detallesArea.setText(metodo.getDetalles());
     }
 
+    @FXML
     private void recargarDatos() {
         listaObservable.setAll(manejadorMetodoPagoDB.getMetodosPagoPS());
         limpiarForm();
@@ -139,15 +140,6 @@ public class CRUDMetodoPagoController {
         codigoMetodoText.clear();
         detallesArea.clear();
         tablaMetodos.getSelectionModel().clearSelection();
-    }
-
-    @FXML
-    private void probarConexión() {
-        Connection conn = manejadorMetodoPagoDB.abrirConexion();
-        if (conn != null) {
-            mostrarAlerta("Conexión exitosa!!", "Éxito", Alert.AlertType.INFORMATION);
-            manejadorMetodoPagoDB.cerrarConexion(conn);
-        } else { mostrarAlerta("No se pudo conectar.", "Error", Alert.AlertType.ERROR); }
     }
 
     private void mostrarAlerta(String mensaje, String titulo, Alert.AlertType tipo) {

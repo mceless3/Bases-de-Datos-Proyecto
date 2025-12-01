@@ -11,7 +11,6 @@ import java.sql.Connection;
 
 public class CRUDDireccionController {
 
-    @FXML private TextField idText;
     @FXML private TextField linea1Text;
     @FXML private TextField linea2Text;
     @FXML private TextField ciudadText;
@@ -31,7 +30,6 @@ public class CRUDDireccionController {
     private ManejadorDireccionDB manejadorDireccionDB;
     private ObservableList<Direccion> listaObservable;
 
-    // Metodo llamado al abrir la ventana
     public void initData(String url, String user, String password) {
         manejadorDireccionDB = new ManejadorDireccionDB(url, user, password);
         listaObservable = FXCollections.observableArrayList(manejadorDireccionDB.getDireccionesPS());
@@ -40,6 +38,8 @@ public class CRUDDireccionController {
         tablaDirecciones.getSelectionModel().selectedItemProperty().addListener((obs, oldSel, newSel)->{
             if (newSel != null) {
                 cargarSeleccionado(newSel);
+            } else {
+                limpiarForm();
             }
         });
 
@@ -55,6 +55,18 @@ public class CRUDDireccionController {
         columnaPostal.setCellValueFactory(new PropertyValueFactory<>("codigoPostal"));
         columnaPais.setCellValueFactory(new PropertyValueFactory<>("pais"));
         columnaPrincipal.setCellValueFactory(new PropertyValueFactory<>("esPrincipal"));
+        columnaPrincipal.setCellFactory(column -> new TableCell<Direccion, Boolean>() {
+            @Override
+            protected void updateItem(Boolean item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    // Convierte el booleano a "Sí" o "No"
+                    setText(item ? "Sí" : "No");
+                }
+            }
+        });
     }
 
     @FXML
@@ -71,7 +83,11 @@ public class CRUDDireccionController {
             return;
         }
 
-        int idGuardar = Integer.parseInt(idText.getText());
+        Direccion seleccionado = tablaDirecciones.getSelectionModel().getSelectedItem();
+        int idGuardar = (seleccionado != null) ? seleccionado.getId() : 0;
+
+        String linea3 = "";
+
         Direccion direccion = new Direccion(idGuardar, linea1, linea2, ciudad, codigoPostal, pais, esPrincipal);
 
         int resultado;
@@ -95,17 +111,18 @@ public class CRUDDireccionController {
 
     @FXML
     private void eliminarDireccion() {
-        int idEliminar;
-        try {
-            idEliminar = Integer.parseInt(idText.getText());
-        } catch (NumberFormatException e) {
-            mostrarAlerta("Seleccione un ID válido para eliminar", "Aviso", Alert.AlertType.WARNING);
+        Direccion seleccionado = tablaDirecciones.getSelectionModel().getSelectedItem();
+
+        if (seleccionado == null) {
+            mostrarAlerta("Seleccione una dirección de la tabla para eliminar", "Aviso", Alert.AlertType.WARNING);
             return;
         }
 
+        int idEliminar = seleccionado.getId();
+
         if (idEliminar > 0) {
             manejadorDireccionDB.eliminarPS(idEliminar);
-            mostrarAlerta("Dirección eliminada (si el ID existía)", "Correcto", Alert.AlertType.INFORMATION);
+            mostrarAlerta("Dirección eliminada (ID: " + idEliminar + ")", "Correcto", Alert.AlertType.INFORMATION);
             recargarDatos();
         } else {
             mostrarAlerta("Seleccione un ID válido ", "Aviso", Alert.AlertType.INFORMATION);
@@ -136,7 +153,6 @@ public class CRUDDireccionController {
 
     @FXML
     private void cargarSeleccionado(Direccion direccion) {
-        idText.setText(String.valueOf(direccion.getId()));
         linea1Text.setText(direccion.getLinea1());
         linea2Text.setText(direccion.getLinea2());
         ciudadText.setText(direccion.getCiudad());
@@ -152,7 +168,6 @@ public class CRUDDireccionController {
     }
 
     private void limpiarForm() {
-        idText.setText(String.valueOf(0));
         linea1Text.clear();
         linea2Text.clear();
         ciudadText.clear();
@@ -162,22 +177,9 @@ public class CRUDDireccionController {
         tablaDirecciones.getSelectionModel().clearSelection();
     }
 
-    @FXML
-    private void probarConexión() {
-        Connection conn = manejadorDireccionDB.abrirConexion();
-
-        if (conn != null) {
-            mostrarAlerta("Conexión exitosa!!", "Éxito",Alert.AlertType.INFORMATION);
-            manejadorDireccionDB.cerrarConexion(conn);
-            mostrarAlerta("Se cerró la conexión", "Éxito",Alert.AlertType.INFORMATION);
-        } else {
-            mostrarAlerta("No se pudo conectar a la base de datos", "Error",Alert.AlertType.ERROR);
-        }
-    }
-
     private void mostrarAlerta(String mensaje, String titulo, Alert.AlertType tipo) {
         Alert alerta = new Alert(tipo);
-        alerta.setTitle("Aviso");
+        alerta.setTitle(titulo);
         alerta.setHeaderText(null);
         alerta.setContentText(mensaje);
 

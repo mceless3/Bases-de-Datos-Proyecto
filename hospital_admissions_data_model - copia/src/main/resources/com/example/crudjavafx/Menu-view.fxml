@@ -74,13 +74,14 @@
 
             <Button fx:id="btnFacturas" mnemonicParsing="false" onAction="#abrirCRUD" prefHeight="40.0" prefWidth="300.0" styleClass="menu-button, menu-button-red" text="4. Facturas (Bills)" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-            <Button fx:id="btnItemsFactura" mnemonicParsing="false" onAction="#abrirCRUD" prefHeight="40.0" prefWidth="300.0" styleClass="menu-button, menu-button-purple" text="5. Ítems de Factura" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <Button fx:id="btnEstancias" mnemonicParsing="false" onAction="#abrirCRUD" prefHeight="40.0" prefWidth="300.0" styleClass="menu-button, menu-button-cyan" text="5. Estancias (Rooms)" textFill="WHITE" GridPane.rowIndex="2">
+            <font>
+               <Font name="Century Gothic Bold" size="12.0" />
+            </font></Button>
 
-            <Button fx:id="btnEstancias" mnemonicParsing="false" onAction="#abrirCRUD" prefHeight="40.0" prefWidth="300.0" styleClass="menu-button, menu-button-cyan" text="6. Estancias (Rooms)" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="btnComponentes" mnemonicParsing="false" onAction="#abrirCRUD" prefHeight="40.0" prefWidth="300.0" styleClass="menu-button, menu-button-yellow" text="6. Catálogo Componentes" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-            <Button fx:id="btnComponentes" mnemonicParsing="false" onAction="#abrirCRUD" prefHeight="40.0" prefWidth="300.0" styleClass="menu-button, menu-button-yellow" text="7. Catálogo Componentes" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-
-            <Button fx:id="btnRelacionesDir" mnemonicParsing="false" onAction="#abrirCRUD" prefHeight="40.0" prefWidth="300.0" styleClass="menu-button, menu-button-dark" text="8. Historial de Direcciones" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Button fx:id="btnRelacionesDir" mnemonicParsing="false" onAction="#abrirCRUD" prefHeight="40.0" prefWidth="300.0" styleClass="menu-button, menu-button-dark" text="7. Historial de Direcciones" textFill="WHITE" GridPane.rowIndex="3" />
 
             <padding>
                 <Insets bottom="10.0" left="60.0" right="60.0" top="50.0" />

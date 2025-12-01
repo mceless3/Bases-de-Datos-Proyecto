@@ -28,8 +28,11 @@
             <padding>
                 <Insets bottom="40.0" left="80.0" top="5.0" />
             </padding>
+         <VBox.margin>
+            <Insets bottom="30.0" />
+         </VBox.margin>
         </Label>
-        <GridPane hgap="30.0" prefHeight="122.0" prefWidth="1000.0" vgap="25.0">
+        <GridPane hgap="30.0" prefHeight="113.0" prefWidth="1000.0" vgap="25.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="199.33331298828125" minWidth="10.0" prefWidth="192.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="270.6666259765625" minWidth="10.0" prefWidth="238.66666666666669" />
@@ -46,7 +49,7 @@
                         <Font name="Century Gothic Bold" size="14.0" />
                     </font>
                 </Label>
-                <TextField fx:id="idEntidadText" GridPane.columnIndex="1" />
+                <TextField fx:id="idEntidadText" prefHeight="81.0" prefWidth="261.0" GridPane.columnIndex="1" />
 
                 <Label text="ID Dirección (FK)" GridPane.rowIndex="1">
                     <font>
@@ -73,12 +76,12 @@
                 <Insets bottom="8.0" left="100.0" top="30.0" />
             </VBox.margin>
             <padding>
-                <Insets left="20.0" right="20.0" />
+                <Insets bottom="25.0" left="20.0" right="20.0" />
             </padding>
         </GridPane>
         <Pane prefHeight="48.0" prefWidth="900.0">
             <children>
-                <HBox alignment="CENTER" layoutX="-2.0" layoutY="-4.0" prefHeight="66.0" prefWidth="1249.0" spacing="40.0">
+                <HBox alignment="CENTER" layoutX="-2.0" layoutY="-63.0" prefHeight="125.0" prefWidth="1249.0" spacing="40.0">
                     <children>
                         <Button alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#guardarRelacion" style="-fx-base: #64dbff;" text="Guardar / Finalizar">
                             <font>
@@ -107,9 +110,9 @@
                 </HBox>
             </children>
         </Pane>
-        <BorderPane prefHeight="200.0" prefWidth="200.0">
+        <BorderPane prefHeight="197.0" prefWidth="1100.0">
             <center>
-                <TableView fx:id="tablaRelaciones" minHeight="200.0" prefHeight="211.0" prefWidth="1060.0" BorderPane.alignment="CENTER">
+                <TableView fx:id="tablaRelaciones" minHeight="200.0" prefHeight="363.0" prefWidth="1060.0" BorderPane.alignment="CENTER">
                     <columns>
                         <TableColumn fx:id="columnaIdEntidad" prefWidth="120.0" text="ID Entidad" />
                         <TableColumn fx:id="columnaIdDireccion" prefWidth="120.0" text="ID Dirección" />
@@ -128,14 +131,6 @@
                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </padding>
         </BorderPane>
-        <Button mnemonicParsing="false" onAction="#probarConexión" style="-fx-base: #FFC257;" text="Probar Conexión">
-            <font>
-                <Font name="Century Gothic Bold" size="13.0" />
-            </font>
-            <VBox.margin>
-                <Insets bottom="10.0" />
-            </VBox.margin>
-        </Button>
     </children>
     <padding>
         <Insets top="20.0" />

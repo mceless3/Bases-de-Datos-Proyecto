@@ -19,8 +19,7 @@ public class MenuController {
     private final String FXML_PACIENTES = "CRUDPacientes-view.fxml";
     private final String FXML_PERSONAL = "CRUDPersonal-view.fxml";
     private final String FXML_DIRECCIONES = "CRUDDireccion-view.fxml";
-    private final String FXML_FACTURAS = "CRUDFactura-view.fxml";
-    private final String FXML_ITEMS_FACTURA = "CRUDItemFactura-view.fxml";
+    private final String FXML_FACTURAS = "CombinacionFacturas.fxml";
     private final String FXML_COMPONENTES = "CRUDComponente-view.fxml";
     private final String FXML_ESTANCIAS = "CRUDEstancia-view.fxml";
     private final String FXML_RELACIONES_DIR = "CRUDRelacionDireccion-view.fxml";
@@ -52,9 +51,6 @@ public class MenuController {
         } else if (sourceButton.getId().equals("btnFacturas")) {
             fxmlFile = FXML_FACTURAS;
             title = "Módulo de Facturación";
-        } else if (sourceButton.getId().equals("btnItemsFactura")) {
-            fxmlFile = FXML_ITEMS_FACTURA;
-            title = "Detalle de Ítems de Factura";
         } else if (sourceButton.getId().equals("btnComponentes")) {
             fxmlFile = FXML_COMPONENTES;
             title = "Catálogo de Componentes";
@@ -93,11 +89,7 @@ public class MenuController {
                     ((CRUDDireccionController) controller).initData(urlConexion, usuario, password);
                     break;
                 case FXML_FACTURAS:
-                    ((CRUDFacturaController) controller).initData(urlConexion, usuario, password);
-                    break;
-                case FXML_ITEMS_FACTURA:
-                    ((CRUDItemFacturaController) controller).initData(urlConexion, usuario, password);
-                    break;
+                    ((CRUDCombinadoController) controller).initData(urlConexion, usuario, password);                    break;
                 case FXML_COMPONENTES:
                     ((CRUDComponenteController) controller).initData(urlConexion, usuario, password);
                     break;

@@ -118,14 +118,6 @@
                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </padding>
         </BorderPane>
-        <Button mnemonicParsing="false" onAction="#probarConexión" prefHeight="24.0" prefWidth="151.0" style="-fx-base: #FFC257;" text="Probar Conexión">
-            <font>
-                <Font name="Century Gothic Bold" size="13.0" />
-            </font>
-            <VBox.margin>
-                <Insets bottom="10.0" left="20.0" />
-            </VBox.margin>
-        </Button>
     </children>
     <padding>
         <Insets top="20.0" />

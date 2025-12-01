@@ -13,7 +13,6 @@ import java.util.ArrayList;
 
 public class CRUDPacientesController {
 
-    @FXML private TextField idText;
     @FXML private TextField nombreText;
     @FXML private TextField apellidoText;
     @FXML private TextField hospitalNumberText;
@@ -25,10 +24,11 @@ public class CRUDPacientesController {
     @FXML private TableColumn<Paciente, Integer> columnaId;
     @FXML private TableColumn<Paciente, String> columnaNombre;
     @FXML private TableColumn<Paciente, String> columnaApellido;
-    @FXML private TableColumn<Paciente, String> columnaNumHospital;
     @FXML private TableColumn<Paciente, Double> columnaPeso;
     @FXML private TableColumn<Paciente, LocalDate> columnaFechaNac;
     @FXML private TableColumn<Paciente, String> columnaGenero;
+
+    @FXML private TableColumn<Paciente, String> columnaNumHospital;
 
     private ManejadorPacienteDB manejadorPacientesDB;
     private ObservableList<Paciente> listaObservable;
@@ -44,7 +44,11 @@ public class CRUDPacientesController {
         }
 
         tablaPacientes.getSelectionModel().selectedItemProperty().addListener((obs, oldSel, newSel)->{
-            if (newSel != null) { cargarSeleccionado(newSel); }
+            if (newSel != null) {
+                cargarSeleccionado(newSel);
+            } else {
+                limpiarForm();
+            }
         });
 
         limpiarForm();
@@ -63,7 +67,9 @@ public class CRUDPacientesController {
 
     @FXML
     private void guardarPaciente() {
-        String nombre = nombreText.getText(), apellido = apellidoText.getText(), hospitalNumber = hospitalNumberText.getText();
+        String nombre = nombreText.getText();
+        String apellido = apellidoText.getText();
+        String hospitalNumber = hospitalNumberText.getText();
         String pesoStr = weightText.getText();
         LocalDate fechaNac = fechaNacimientoPicker.getValue();
         String genero = generoComboBox.getValue();
@@ -81,30 +87,37 @@ public class CRUDPacientesController {
             return;
         }
 
-        int idGuardar = Integer.parseInt(idText.getText());
+        Paciente seleccionado = tablaPacientes.getSelectionModel().getSelectedItem();
+        int idGuardar = (seleccionado != null) ? seleccionado.getId() : 0;
+
         Paciente paciente = new Paciente(idGuardar, nombre, apellido, hospitalNumber, peso, fechaNac, genero);
 
-        int resultado = (idGuardar == 0) ? manejadorPacientesDB.insertarPS(paciente) : manejadorPacientesDB.actualizarPS(paciente);
+        int resultado;
 
-        if (resultado > 0) {
-            mostrarAlerta((idGuardar == 0) ? "Paciente agregado correctamente. ID: " + resultado : "Paciente actualizado correctamente.", "Correcto", Alert.AlertType.INFORMATION);
+        if (idGuardar != 0) {
+            resultado = manejadorPacientesDB.actualizarPS(paciente);
+            mostrarAlerta((resultado > 0) ? "Paciente actualizado correctamente." : "No se pudo actualizar.", "Correcto", Alert.AlertType.INFORMATION);
         } else {
-            mostrarAlerta("No se pudo guardar el paciente.", "Error", Alert.AlertType.ERROR);
+            resultado = manejadorPacientesDB.insertarPS(paciente);
+            mostrarAlerta((resultado > 0) ? "Paciente agregado correctamente. ID: " + resultado : "No se pudo agregar.", "Correcto", Alert.AlertType.INFORMATION);
         }
         recargarDatos();
     }
 
     @FXML
     private void eliminarPaciente() {
-        int idEliminar;
-        try { idEliminar = Integer.parseInt(idText.getText()); }
-        catch (NumberFormatException e) { mostrarAlerta("Seleccione un ID válido para eliminar", "Aviso", Alert.AlertType.WARNING); return; }
+        Paciente seleccionado = tablaPacientes.getSelectionModel().getSelectedItem();
 
-        if (idEliminar > 0) {
-            manejadorPacientesDB.eliminarPS(idEliminar);
-            mostrarAlerta("Paciente eliminado (si el ID existía)", "Correcto", Alert.AlertType.INFORMATION);
-            recargarDatos();
+        if (seleccionado == null) {
+            mostrarAlerta("Seleccione un paciente de la tabla para eliminar", "Aviso", Alert.AlertType.WARNING);
+            return;
         }
+
+        int idEliminar = seleccionado.getId();
+
+        manejadorPacientesDB.eliminarPS(idEliminar);
+        mostrarAlerta("Paciente eliminado (ID: " + idEliminar + ")", "Correcto", Alert.AlertType.INFORMATION);
+        recargarDatos();
     }
 
     @FXML
@@ -119,7 +132,10 @@ public class CRUDPacientesController {
 
         if (!weightText.getText().isEmpty()) {
             try { pesoFiltro = Double.parseDouble(weightText.getText()); }
-            catch (NumberFormatException e) { mostrarAlerta("El peso debe ser un número válido ", "Error", Alert.AlertType.ERROR); return; }
+            catch (NumberFormatException e) {
+                mostrarAlerta("El peso debe ser un número válido ", "Error", Alert.AlertType.ERROR);
+                return;
+            }
         }
 
         listaObservable.setAll(manejadorPacientesDB.getPacientesPorFiltroPS(nombreFiltro, apellidoFiltro, hospitalNumberFiltro, pesoFiltro, fechaNacFiltro, generoFiltro));
@@ -131,7 +147,6 @@ public class CRUDPacientesController {
     }
 
     private void cargarSeleccionado(Paciente paciente) {
-        idText.setText(String.valueOf(paciente.getId()));
         nombreText.setText(paciente.getNombre());
         apellidoText.setText(paciente.getApellido());
         hospitalNumberText.setText(paciente.getHospitalNumber());
@@ -148,7 +163,6 @@ public class CRUDPacientesController {
 
     @FXML
     private void limpiarForm() {
-        idText.setText(String.valueOf(0));
         nombreText.clear();
         apellidoText.clear();
         hospitalNumberText.clear();
@@ -158,21 +172,9 @@ public class CRUDPacientesController {
         tablaPacientes.getSelectionModel().clearSelection();
     }
 
-    @FXML
-    private void probarConexión() {
-        Connection conn = manejadorPacientesDB.abrirConexion();
-        if (conn != null) {
-            mostrarAlerta("Conexión exitosa!!", "Éxito", Alert.AlertType.INFORMATION);
-            manejadorPacientesDB.cerrarConexion(conn);
-            mostrarAlerta("Se cerró la conexión", "Éxito", Alert.AlertType.INFORMATION);
-        } else {
-            mostrarAlerta("No se pudo conectar a la base de datos", "Error", Alert.AlertType.ERROR);
-        }
-    }
-
     private void mostrarAlerta(String mensaje, String titulo, Alert.AlertType tipo) {
         Alert alerta = new Alert(tipo);
-        alerta.setTitle("Aviso");
+        alerta.setTitle(titulo);
         alerta.setHeaderText(null);
         alerta.setContentText(mensaje);
         Stage stage = (Stage) tablaPacientes.getScene().getWindow();

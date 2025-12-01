@@ -50,73 +50,50 @@
                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="250.0" />
                 </columnConstraints>
                 <rowConstraints>
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                </rowConstraints>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" /> <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" /> <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" /> <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" /> <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" /> <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" /> <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" /> <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" /> </rowConstraints>
 
-                <Label text="ID Personal:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                    <font>
-                        <Font name="Century Gothic Bold" size="14.0" />
-                    </font></Label>
-                <TextField fx:id="idText" disable="true" editable="false" text="0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <Label text="Nombre:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0"> <font>
+                    <Font name="Century Gothic Bold" size="14.0" />
+                </font></Label>
+                <TextField fx:id="nombreText" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-                <Label text="Nombre:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                    <font>
-                        <Font name="Century Gothic Bold" size="14.0" />
-                    </font></Label>
-                <TextField fx:id="nombreText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Label text="Apellido:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="1"> <font>
+                    <Font name="Century Gothic Bold" size="14.0" />
+                </font></Label>
+                <TextField fx:id="apellidoText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-                <Label text="Apellido:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="2">
-                    <font>
-                        <Font name="Century Gothic Bold" size="14.0" />
-                    </font></Label>
-                <TextField fx:id="apellidoText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Label text="Puesto:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="2"> <font>
+                    <Font name="Century Gothic Bold" size="14.0" />
+                </font></Label>
+                <TextField fx:id="puestoText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-                <Label text="Puesto:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="3">
-                    <font>
-                        <Font name="Century Gothic Bold" size="14.0" />
-                    </font></Label>
-                <TextField fx:id="puestoText" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <Label text="Fecha Nacimiento:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="3"> <font>
+                    <Font name="Century Gothic Bold" size="13.0" />
+                </font></Label>
+                <DatePicker fx:id="fechaNacimientoPicker" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-                <Label text="Fecha Nacimiento:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="4">
-                    <font>
-                        <Font name="Century Gothic Bold" size="13.0" />
-                    </font></Label>
-                <DatePicker fx:id="fechaNacimientoPicker" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <Label text="Categoría:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="4"> <font>
+                    <Font name="Century Gothic Bold" size="14.0" />
+                </font></Label>
+                <ComboBox fx:id="categoriaComboBox" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
-                <Label text="Categoría:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="5">
-                    <font>
-                        <Font name="Century Gothic Bold" size="14.0" />
-                    </font></Label>
-                <ComboBox fx:id="categoriaComboBox" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                <Label text="Género:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="5"> <font>
+                    <Font name="Century Gothic Bold" size="14.0" />
+                </font></Label>
+                <ComboBox fx:id="generoComboBox" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
-                <Label text="Género:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="6">
-                    <font>
-                        <Font name="Century Gothic Bold" size="14.0" />
-                    </font></Label>
-                <ComboBox fx:id="generoComboBox" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-
-                <Label text="Activo (Guardar):" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="7">
-                    <font>
-                        <Font name="Century Gothic Bold" size="14.0" />
-                    </font></Label>
-                <CheckBox fx:id="activoCheckBox" selected="true" text="Sí" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                <Label text="Activo (Guardar):" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="6"> <font>
+                    <Font name="Century Gothic Bold" size="14.0" />
+                </font></Label>
+                <CheckBox fx:id="activoCheckBox" selected="true" text="Sí" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="6">
                     <font>
                         <Font name="Century Gothic Bold" size="13.0" />
                     </font></CheckBox>
 
-                <Label text="Filtro Estado Activo:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="8">
-                    <font>
-                        <Font name="Century Gothic Bold" size="14.0" />
-                    </font></Label>
-                <ComboBox fx:id="estadoActivoComboBox" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                <Label text="Filtro Estado Activo:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="7"> <font>
+                    <Font name="Century Gothic Bold" size="14.0" />
+                </font></Label>
+                <ComboBox fx:id="estadoActivoComboBox" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                 <padding>
                     <Insets bottom="15.0" />
                 </padding>
@@ -147,11 +124,6 @@
                         <Font name="Century Gothic Bold" size="13.0" />
                     </font></Button>
             </HBox>
-
-            <Button onAction="#probarConexión" text="Probar Conexión">
-                <font>
-                    <Font name="Century Gothic Bold" size="13.0" />
-                </font></Button>
 
         </VBox>
     </left>

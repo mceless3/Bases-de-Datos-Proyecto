@@ -41,32 +41,28 @@
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            </rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" /> <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" /> <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints /> </rowConstraints>
             <children>
-                <Label text="ID" GridPane.columnIndex="0">
-                    <font>
-                        <Font name="Century Gothic Bold" size="14.0" />
-                    </font>
+                <Label prefHeight="18.0" prefWidth="125.0" text="Línea 1 (Obl.)" GridPane.columnIndex="0" GridPane.rowIndex="0"> <font>
+                    <Font name="Century Gothic Bold" size="14.0" />
+                </font>
                 </Label>
-                <TextField fx:id="idText" disable="true" GridPane.columnIndex="1" />
+                <TextField fx:id="linea1Text" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-                <Label prefHeight="18.0" prefWidth="125.0" text="Línea 1 (Obl.)" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                    <font>
-                        <Font name="Century Gothic Bold" size="14.0" />
-                    </font>
+                <Label text="Línea 2" GridPane.columnIndex="0" GridPane.rowIndex="1"> <font>
+                    <Font name="Century Gothic Bold" size="14.0" />
+                </font>
                 </Label>
-                <TextField fx:id="linea1Text" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="linea2Text" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-                <Label text="Línea 2" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                <Label text="Línea 3 (Área)" GridPane.columnIndex="0" GridPane.rowIndex="2">
                     <font>
                         <Font name="Century Gothic Bold" size="14.0" />
                     </font>
                 </Label>
-                <TextField fx:id="linea2Text" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <TextField fx:id="linea3Text" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
 
                 <Label text="Ciudad (Obl.)" GridPane.columnIndex="2" GridPane.rowIndex="0">
                     <font>
@@ -89,7 +85,7 @@
                 </Label>
                 <TextField fx:id="paisText" GridPane.columnIndex="3" GridPane.rowIndex="2" />
 
-                <CheckBox fx:id="principalCheckBox" mnemonicParsing="false" text="Es Dirección Principal" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                <CheckBox fx:id="principalCheckBox" mnemonicParsing="false" text="Es Dirección Principal" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="3">
                     <font>
                         <Font name="Century Gothic Bold" size="14.0" />
                     </font>
@@ -109,17 +105,17 @@
                         <Font name="Century Gothic Bold" size="13.0" />
                     </font>
                 </Button>
-                <Button mnemonicParsing="false" onAction="#filtrarDirecciones" style="-fx-base: DF7DFF;" text="Filtrar">
+                <Button mnemonicParsing="false" onAction="#filtrarDirecciones" style="-fx-base: #DF7DFF;" text="Filtrar">
                     <font>
                         <Font name="Century Gothic Bold" size="13.0" />
                     </font>
                 </Button>
-                <Button mnemonicParsing="false" onAction="#eliminarDireccion" style="-fx-base: ff5fb5;" text="Eliminar">
+                <Button mnemonicParsing="false" onAction="#eliminarDireccion" style="-fx-base: #ff5fb5;" text="Eliminar">
                     <font>
                         <Font name="Century Gothic Bold" size="13.0" />
                     </font>
                 </Button>
-                <Button mnemonicParsing="false" onAction="#recargarDatos" style="-fx-base: yellow;" text="Limpiar">
+                <Button mnemonicParsing="false" onAction="#recargarDatos" style="-fx-base: #FFFF00;" text="Limpiar">
                     <font>
                         <Font name="Century Gothic Bold" size="13.0" />
                     </font>
@@ -147,14 +143,6 @@
                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </padding>
         </BorderPane>
-        <Button mnemonicParsing="false" onAction="#probarConexión" prefHeight="35.0" prefWidth="123.0" style="-fx-base: #FFC257;" text="Probar Conexión">
-            <font>
-                <Font name="Century Gothic Bold" size="13.0" />
-            </font>
-            <VBox.margin>
-                <Insets bottom="15.0" />
-            </VBox.margin>
-        </Button>
     </children>
     <padding>
         <Insets top="20.0" />
