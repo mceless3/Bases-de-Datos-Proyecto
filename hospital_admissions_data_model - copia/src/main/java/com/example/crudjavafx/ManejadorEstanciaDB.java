@@ -51,13 +51,21 @@ public class ManejadorEstanciaDB {
 
     public ArrayList<Estancia> getEstanciasPS(){
         ArrayList<Estancia> estancias = new ArrayList<>();
-        String query = "SELECT patient_id, room_id, date_stay_from, date_stay_to FROM public.patient_rooms ORDER BY patient_id ASC, date_stay_from DESC";
+        String query = "SELECT pr.patient_id, pr.room_id, pr.date_stay_from, pr.date_stay_to, " +
+                "p.patient_first_name, p.patient_last_name " +
+                "FROM public.patient_rooms pr " +
+                "JOIN public.patients p ON pr.patient_id = p.patient_id " +
+                "ORDER BY pr.patient_id ASC, pr.date_stay_from DESC";
 
         try(Connection conn = abrirConexion(); PreparedStatement ps = conn.prepareStatement(query); ResultSet rs = ps.executeQuery()) {
             while (rs.next()){
                 estancias.add(new Estancia(
-                        rs.getInt("patient_id"), rs.getString("room_id"), rs.getDate("date_stay_from").toLocalDate(),
-                        rs.getDate("date_stay_to") != null ? rs.getDate("date_stay_to").toLocalDate() : null
+                        rs.getInt("patient_id"),
+                        rs.getString("room_id"),
+                        rs.getDate("date_stay_from").toLocalDate(),
+                        rs.getDate("date_stay_to") != null ? rs.getDate("date_stay_to").toLocalDate() : null,
+                        rs.getString("patient_first_name"), // Se extrae de la consulta
+                        rs.getString("patient_last_name")    // Se extrae de la consulta
                 ));
             }
         } catch (SQLException e){ e.printStackTrace(); }
@@ -76,15 +84,22 @@ public class ManejadorEstanciaDB {
 
     public ArrayList<Estancia> getEstanciasPorPacientePS(int idPacienteFiltro){
         ArrayList<Estancia> estancias = new ArrayList<>();
-        String query = "SELECT patient_id, room_id, date_stay_from, date_stay_to FROM public.patient_rooms WHERE patient_id = ? ORDER BY date_stay_from DESC";
-
+        String query = "SELECT pr.patient_id, pr.room_id, pr.date_stay_from, pr.date_stay_to, " +
+                "p.patient_first_name, p.patient_last_name " +
+                "FROM public.patient_rooms pr " +
+                "JOIN public.patients p ON pr.patient_id = p.patient_id " +
+                "WHERE pr.patient_id = ? ORDER BY pr.date_stay_from DESC";
         try(Connection conn = abrirConexion(); PreparedStatement ps = conn.prepareStatement(query)) {
             ps.setInt(1, idPacienteFiltro);
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
                 estancias.add(new Estancia(
-                        rs.getInt("patient_id"), rs.getString("room_id"), rs.getDate("date_stay_from").toLocalDate(),
-                        rs.getDate("date_stay_to") != null ? rs.getDate("date_stay_to").toLocalDate() : null
+                        rs.getInt("patient_id"),
+                        rs.getString("room_id"),
+                        rs.getDate("date_stay_from").toLocalDate(),
+                        rs.getDate("date_stay_to") != null ? rs.getDate("date_stay_to").toLocalDate() : null,
+                        rs.getString("patient_first_name"), // Se extrae de la consulta
+                        rs.getString("patient_last_name")    // Se extrae de la consulta
                 ));
             }
         } catch (SQLException e){ e.printStackTrace(); }

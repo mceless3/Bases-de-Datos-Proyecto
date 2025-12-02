@@ -23,6 +23,9 @@ public class CRUDEstanciaController {
     @FXML private TableColumn<Estancia, LocalDate> columnaFechaInicio;
     @FXML private TableColumn<Estancia, LocalDate> columnaFechaFin;
 
+    @FXML private TableColumn<Estancia, String> columnaNombrePaciente; // NUEVA
+    @FXML private TableColumn<Estancia, String> columnaApellidoPaciente; // NUEVA
+
     private ManejadorEstanciaDB manejadorEstanciaDB;
     private ObservableList<Estancia> listaObservable;
 
@@ -44,6 +47,8 @@ public class CRUDEstanciaController {
         columnaIdHabitacion.setCellValueFactory(new PropertyValueFactory<>("idHabitacion"));
         columnaFechaInicio.setCellValueFactory(new PropertyValueFactory<>("fechaInicio"));
         columnaFechaFin.setCellValueFactory(new PropertyValueFactory<>("fechaFin"));
+        columnaNombrePaciente.setCellValueFactory(new PropertyValueFactory<>("nombrePaciente"));
+        columnaApellidoPaciente.setCellValueFactory(new PropertyValueFactory<>("apellidoPaciente"));
     }
 
     @FXML

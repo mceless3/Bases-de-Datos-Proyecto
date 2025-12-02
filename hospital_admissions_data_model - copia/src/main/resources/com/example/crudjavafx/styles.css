@@ -1,6 +1,3 @@
-/* ================================================================= */
-/* 1. ESTILOS DE FONDO Y CONTENEDORES */
-/* ================================================================= */
 
 .menu-vbox {
     -fx-background-image: url("image/menu_background.png");
@@ -34,17 +31,12 @@
     -fx-text-fill: white;
 }
 
-/* ================================================================= */
-/* 2. FUENTES PERSONALIZADAS (CENTURY GOTHIC) */
-/* ================================================================= */
 
-/* Carga la variante Regular */
 @font-face {
     font-family: 'CenturyGothicCustom';
     src: url('fonts/GOTHIC.TTF');
 }
 
-/* Carga la variante Negrita (Bold) */
 @font-face {
     font-family: 'CenturyGothicCustom';
     src: url('fonts/GOTHICB.TTF');
@@ -62,9 +54,7 @@
     -fx-font-family: 'CenturyGothicCustom';
     -fx-font-size: 14pt;
     -fx-font-weight: bold;
-    /* Atención: -fx-font-styles no existe. Se usa -fx-font-style para cursiva */
-    /* Si quieres cursiva, la fuente GOTHICI.TTF o similar debe cargarse y definirse */
-    /* Dejamos solo la familia y el peso según tu original: */
+
 }
 
 .button-crud {
@@ -74,12 +64,7 @@
 }
 
 
-/* ================================================================= */
-/* 3. ESTILOS DE BOTONES DEL MENÚ (CORRECCIÓN HOVER) */
-/* ================================================================= */
-
 /* 3.1. Clase Base para Botones del Menú (Asegura tipografía y cursor) */
-/* Todos los botones del FXML deben tener styleClass="menu-button" */
 .menu-button {
     -fx-font-family: 'Century Gothic Bold'; /* Usa la fuente Bold que ya tenías referenciada */
     -fx-font-size: 18.0;
@@ -90,19 +75,14 @@
     -fx-transition: 0.2s;
 }
 
-/* 3.2. REGLA DE HOVER: Aplica una iluminación visible a todos */
 .menu-button:hover {
     /* Efecto de iluminación visible para que se note en todos los colores */
     -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.7), 15, 0, 0, 0);
-    /* Aclara el color base para el efecto visual de "encendido" */
     -fx-base: derive(-fx-base, 15%);
-    /* Ligero aumento de tamaño */
     -fx-scale-y: 1.05;
     -fx-scale-x: 1.05;
 }
 
-/* 3.3. Clases para Colores Específicos (Deben usarse en el FXML junto con menu-button) */
-/* styleClass="menu-button, menu-button-blue" */
 
 .menu-button-blue { -fx-base: #2980b9; }      /* Pacientes */
 .menu-button-green { -fx-base: #27ae60; }     /* Personal */

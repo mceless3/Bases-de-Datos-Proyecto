@@ -107,6 +107,8 @@
                 <TableView fx:id="tablaEstancias" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <columns>
                         <TableColumn fx:id="columnaIdPaciente" prefWidth="120.0" text="ID Paciente" />
+                  <TableColumn fx:id="columnaNombrePaciente" prefWidth="120.0" text="Nombre" />
+                  <TableColumn fx:id="columnaApellidoPaciente" prefWidth="120.0" text="Apellido" />
                         <TableColumn fx:id="columnaIdHabitacion" prefWidth="120.0" text="Habitación" />
                         <TableColumn fx:id="columnaFechaInicio" prefWidth="150.0" text="Fecha Inicio" />
                         <TableColumn fx:id="columnaFechaFin" prefWidth="150.0" text="Fecha Fin" />

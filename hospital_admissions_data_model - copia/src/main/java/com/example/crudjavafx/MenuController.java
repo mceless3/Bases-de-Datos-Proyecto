@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import java.io.IOException;
@@ -31,6 +32,9 @@ public class MenuController {
         this.usuario = user;
         this.password = password;
         menuStage.setTitle("Menú Principal - Sistema Hospitalario");
+
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/iconoBD.png")));
+
     }
 
     @FXML
