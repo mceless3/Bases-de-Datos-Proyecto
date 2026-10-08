@@ -1,6 +1,7 @@
-CareSync
+**CareSync**
 
-Creadores:
+**Creadores:**
+
 -María Arévalo
 -Anahí Hernández
 -Celeste Román
