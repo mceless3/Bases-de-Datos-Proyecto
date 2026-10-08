@@ -1,4 +1,23 @@
+CareSync
+
+Creadores:
+-María Arévalo
+-Anahí Hernández
+-Celeste Román
+
 Es una aplicación de escritorio diseñada para administrar el flujo de admisiones, pacientes y registros en un entorno médico. A diferencia de mis primeros proyectos, este sistema incorpora una pantalla de autenticación y conexión configurable a una base de datos relacional PostgreSQL mediante JDBC. La interfaz fue diseñada con un enfoque visual mucho más limpio, moderno e intuitivo, cuidando la paleta de colores, la tipografía y la distribución de los componentes.
+
+Instrucciones:
+Base de datos (Requerido)
+1. Importa y ejecuta el archivo `script.sql` (disponible en este repositorio) en **PostgreSQL**.
+2. Asegúrate de tener el servicio de PostgreSQL activo.
+
+Ejecutar la aplicación (Opción rápida)
+1. Ve a la sección releases a la derecha de este repositorio.
+2. Descarga el archivo `.jar`.
+3. Haz doble clic en el archivo descargado para abrirlo.
+
+**Nota:** Necesitas tener **Java** instalado en tu computadora.
 
 <img width="500" height="378" alt="image" src="https://github.com/user-attachments/assets/b2869417-e968-462f-8d28-07bd9f01520b" />
 
